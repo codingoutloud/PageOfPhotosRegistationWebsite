@@ -56,7 +56,7 @@ namespace ClaimDump.Controllers
 
 
                 ViewBag.Message = $"Congrats! @{slug} [{name}] has just signed up for a pageofphotos.com account! (or maybe already had one, but we'll double-check either way!)";
-            }
+                return RedirectToAction("Index", "Home");             }
             else
             {
                 ViewBag.Message = "Nobody is logged in";
