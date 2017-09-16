@@ -1,11 +1,12 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Page of Photos Registration with Twitter";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<h4>Managed Thread Id: @System.Threading.Thread.CurrentThread.ManagedThreadId</h4>
-<h2>Claims inside Current Thread</h2>
+<h1>Page of Photos Registration with Twitter</h1>
+
+<h2>Claims available (will be empty if nobody is logged in)</h2>
 <h4><em>Claim Type</em> &amp;rarr; <em>Claim Value</em></h4>
 <ol>
     @foreach (var claim in ((System.Security.Claims.ClaimsPrincipal) (System.Threading.Thread.CurrentPrincipal)).Claims)
@@ -13,5 +14,7 @@
         <li>@Html.Raw(claim.Type) &rarr; <strong>@claim.Value</strong></li>
     }
 </ol>
+
+
 
 
