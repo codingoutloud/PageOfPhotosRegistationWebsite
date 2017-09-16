@@ -18,16 +18,19 @@ namespace ClaimDump.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var isAuth = ((System.Security.Claims.ClaimsPrincipal)(System.Threading.Thread.CurrentPrincipal)).Identity.IsAuthenticated;
+            if (isAuth)
+                return Redirect("http://pageofphotos.com");
+            else
+                return View();
         }
 
         public ActionResult About()
         {
-            var claims = ((System.Security.Claims.ClaimsPrincipal)(System.Threading.Thread.CurrentPrincipal)).Claims;
-            if (claims != null)
+            var isAuth = ((System.Security.Claims.ClaimsPrincipal)(System.Threading.Thread.CurrentPrincipal)).Identity.IsAuthenticated;
+            if (isAuth)
             {
-
-                var isAuth = ((System.Security.Claims.ClaimsPrincipal)(System.Threading.Thread.CurrentPrincipal)).Identity.IsAuthenticated;
+                var claims = ((System.Security.Claims.ClaimsPrincipal)(System.Threading.Thread.CurrentPrincipal)).Claims;
 
                 var SlugClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn";
                 var NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
