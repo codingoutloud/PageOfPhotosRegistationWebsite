@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Mvc;
 
 namespace ClaimDump.Controllers
@@ -53,10 +56,22 @@ namespace ClaimDump.Controllers
                      };
 
                 // TODO: Do something with this claim data that's already packaged up!
-
-
+                string registrationUrl = ConfigurationManager.AppSettings["RegistrationUrl"];
+                // TODO: MOVE RegistrationUrl TO CONFIG
+//                registrationUrl = "";
+                if (!String.IsNullOrEmpty(registrationUrl))
+                {
+                    var client = new HttpClient();
+                    string json = JsonConvert.SerializeObject(pageRef);
+                    var requestData = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                    var uri = new Uri(registrationUrl);
+                    var response = client.PostAsync(uri, requestData).Result;
+                    var result = response.Content.ReadAsStringAsync().Result;
+                }
+                // TODO: fix redirect back to PoP
+                // return RedirectToAction("Index", "Home");             
                 ViewBag.Message = $"Congrats! @{slug} [{name}] has just signed up for a pageofphotos.com account! (or maybe already had one, but we'll double-check either way!)";
-                return RedirectToAction("Index", "Home");             }
+            }
             else
             {
                 ViewBag.Message = "Nobody is logged in";
@@ -72,6 +87,7 @@ namespace ClaimDump.Controllers
         }
     }
 }
+
 
 
 #if false
