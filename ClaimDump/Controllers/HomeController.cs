@@ -55,7 +55,7 @@ namespace ClaimDump.Controllers
                 // TODO: Do something with this claim data that's already packaged up!
 
 
-                ViewBag.Message = $"User @{slug} [{name}] has a pageofphotos.com account!";
+                ViewBag.Message = $"Congrats! @{slug} [{name}] has just signed up for a pageofphotos.com account! (or maybe already had one, but we'll double-check either way!)";
             }
             else
             {
