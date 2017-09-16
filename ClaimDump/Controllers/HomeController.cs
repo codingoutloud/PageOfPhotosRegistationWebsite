@@ -58,7 +58,7 @@ namespace ClaimDump.Controllers
                 // TODO: Do something with this claim data that's already packaged up!
                 string registrationUrl = ConfigurationManager.AppSettings["RegistrationUrl"];
                 // TODO: MOVE RegistrationUrl TO CONFIG
-//                registrationUrl = "";
+                registrationUrl = "https://pageofphotos-registration-processing.azurewebsites.net/api/EnqueueRegistration?code=2P3g0Oty6pX2mp6b0LHfcJIhgzqkCbuGnJBND7JIAbmY4rOwF2QOow==";
                 if (!String.IsNullOrEmpty(registrationUrl))
                 {
                     var client = new HttpClient();
